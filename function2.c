@@ -7,30 +7,31 @@
 */
 int delet_node_at_index(list_t **head, unsigned int index)
 {
-    list_t *node, *prev_node;
-    unsigned int x = 0;
-    if (!head || !*head)
-    return (0);
+	list_t *node, *prev_node;
+	unsigned int x = 0;
+
+	if (!head || !*head)
+		return (0);
 if (!index)
 {
-    node = *head;
-    *head = (*head)->next;
-    free(node->str);
-    return (1);
+	node = *head;
+	*head = (*head)->next;
+	free(node->str);
+	return (1);
 }
 node = *head;
 while (node)
 {
-    if (x == index)
-    {
-        prev_node->next = node->next;
-        free(node->str);
-        free(node);
-        return (1);
-    }
-    x++;
-    prev_node = node;
-    node = node->next;
+	if (x == index)
+	{
+		prev_node->next = node->next;
+		free(node->str);
+		free(node);
+		return (1);
+	}
+	x++;
+	prev_node = node;
+	node = node->next;
 }
 return (0);
 }
@@ -43,16 +44,16 @@ return (0);
 */
 ssize_t get_node_index(list_t *head, list_t *node)
 {
-    size_t x = 0;
+	size_t x = 0;
 
-    while (head)
-    {
-        if (head == node)
-        return (x);
-    head = head->next;
-    x++;
-    }
-    return (-1);
+	while (head)
+	{
+		if (head == node)
+			return (x);
+		head = head->next;
+		x++;
+	}
+	return (-1);
 }
 
 /**
@@ -62,16 +63,16 @@ ssize_t get_node_index(list_t *head, list_t *node)
 */
 int _putchar(char c)
 {
-    static char buf[WRITE_BUF_SIZE];
-    static int x;
+	static char buf[WRITE_BUF_SIZE];
+	static int x;
 
-    if (c == BUF_FLUSH || x >= WRITE_BUF_SIZE)
-    {
-        write(1, buf, x);
-        x = 0;
-    }
-    if(c != BUF_FLUSH)
-    buf[x++] = c;
+	if (c == BUF_FLUSH || x >= WRITE_BUF_SIZE)
+	{
+		write(1, buf, x);
+		x = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[x++] = c;
 return (1);
 }
 
@@ -82,14 +83,14 @@ return (1);
 */
 void _puts(char *str)
 {
-    int x = 0;
+	int x = 0;
 
-    if (!str)
-    return;
+	if (!str)
+		return;
 while (str[x] != '\0')
 {
-    _putchar(str[x]);
-    x++;
+	_putchar(str[x]);
+	x++;
 }
 }
 
@@ -100,45 +101,46 @@ while (str[x] != '\0')
 */
 size_t print_list_str(const list_t *h)
 {
-    size_t x = 0;
+	size_t x = 0;
 
-    while (h)
-    {
-        _puts(h->str ? h->str : "(nil)");
-        _puts("\n");
-        h = h->next;
-        x++;
-    }
-    return (x);
+	while (h)
+	{
+		_puts(h->str ? h->str : "(nil)");
+		_puts("\n");
+		h = h->next;
+		x++;
+	}
+	return (x);
 }
 
 /**
-_unsetenv - remove an environment variable
-@info: strcture containing potential arguments.
-@var: the string env var property
-Return: 1 on delete, 0 otherwise
+*_unsetenv - remove an environment variable
+*@info: strcture containing potential arguments.
+*@var: the string env var property
+*Return: 1 on delete, 0 otherwise
 */
 int _unsetenv(info_t *info, char *var)
 {
-    list_t *node = info->env;
-    size_t x = 0;
-    char *pointer;
+	list_t *node = info->env;
+	size_t x = 0;
+	char *pointer;
 
-    if (!node || !var)
-    return (0);
+	if (!node || !var)
+		return (0);
 
 while (node)
 {
-    pointer = starts_with(node->str, var);
-    if (pointer && *pointer == '=')
-    {
-        info->env_changed = delet_node_at_index(&(info->env), x);
-        x = 0;
-        node = info->env;
-        continue;
-    }
-    node = node->next;
-    x++;
+	pointer = starts_with(node->str, var);
+
+	if (pointer && *pointer == '=')
+	{
+		info->env_changed = delet_node_at_index(&(info->env), x);
+		x = 0;
+		node = info->env;
+		continue;
+	}
+	node = node->next;
+	x++;
 }
 return (info->env_changed);
-}   
+}
