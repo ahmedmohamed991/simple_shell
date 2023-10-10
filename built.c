@@ -45,8 +45,7 @@ int _mycd(info_t *info)
 	{
 		dr = _getenv(info, "HOME=");
 		if (!dr)
-			chr = /* TODO: what should this be? */
-				chdir((dr = _getenv(info, "PWD=")) ? dr : "/");
+			chr = chdir((dr = _getenv(info, "PWD=")) ? dr : "/");
 		else
 			chr = chdir(dr);
 	}
@@ -59,8 +58,7 @@ int _mycd(info_t *info)
 			return (1);
 		}
 		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
-		chr = /* TODO: what should this be? */
-			chdir((dr = _getenv(info, "OLDPWD=")) ? dr : "/");
+		chr = chdir((dr = _getenv(info, "OLDPWD=")) ? dr : "/");
 	}
 	else
 		chr = chdir(info->argv[1]);
