@@ -35,11 +35,10 @@ return (x);
 }
 
 /**
- *
  *set_alias - sets alias to string
  *@info: the info struct to set the alias for
  *@str: the alias string in the form "alias=value"
- *Retur: alwayes 0 on success, 1 on failure
+ *Return: alwayes 0 on success, 1 on failure
 */
 int set_alias(info_t *info, char *str)
 {
@@ -63,18 +62,20 @@ int print_alias(list_t *node)
 {
 	char *x = NULL, *pointer = NULL;
 
-	if (node)
-	{
-	    pointer = _strchr(node->str, '=');
+if (node)
+{
+pointer = _strchr(node->str, '=');
+}
 
-		for (x = node->str; a <= pointer; x++)
-			_putchar(*x);
-	    _putchar(" \ ");
-	    _puts(pointer + 1);
-	    _puts("\n");
-		return (0);
-	}
-	return (1);
+for (x = node->str; a <= pointer; x++)
+{
+	_putchar(*x);
+	_putchar(" \ ");
+	_puts(pointer + 1);
+	_puts("\n");
+	return (0);
+}
+return (1);
 }
 
 /**
@@ -88,24 +89,24 @@ int _myalias(info_t *info)
 	int x = 0;
 	list_t *node = NULL;
 
-	if (info->argc == 1)
-	{
-		node = info->alias;
+if (info->argc == 1)
+{
+	node = info->alias;
 
-		while (node)
-		{
-		print_alias(node);
-		node = node->next;
-		}
-		return (0);
-	}
-	for (x = 1; info->argv[x]; x++)
-	{
-	    pointer = _strchr(info->argv[x], '=')
+while (node)
+{
+print_alias(node);
+node = node->next;
+}
+return (0);
+}
+for (x = 1; info->argv[x]; x++)
+{
+	pointer = _strchr(info->argv[x], '=')
 		if (pointer)
-		set_alias(info, info->argv[x]);
+			set_alias(info, info->argv[x]);
 		else
 			print_alias(node_starts_with(info->alias, info->argv[x], '='));
-	}
-	return (0);
+}
+return (0);
 }
