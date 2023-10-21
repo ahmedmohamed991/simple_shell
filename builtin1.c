@@ -22,7 +22,7 @@ int unset_alias(info_t *info, char *str)
 	int x;
 	char *pointer, c;
 
-	pointer = _strchr(str, '=');
+	pointer = strchr(str, '=');
 
 	if (!pointer)
 		return (1);
@@ -42,8 +42,7 @@ return (x);
 */
 int set_alias(info_t *info, char *str)
 {
-char *pointer;
-pointer = _strchr(str, '=');
+char *pointer = strchr(str, '=');
 if (!pointer)
 return (1);
 if (!*++pointer)
@@ -61,18 +60,24 @@ return (add_node_end(&(info->alias), str, 0) == NULL);
 int print_alias(list_t *node)
 {
 	char *x = NULL, *pointer = NULL;
+	char *result = strchr(node->str, '=');
+
+	if (result != NULL)
+	{
+		pointer = &node->str[result];
+	}
 
 if (node)
 {
-pointer = _strchr(node->str, '=');
+pointer = strchr(node->str, '=');
 }
 
-for (x = node->str; a <= pointer; x++)
+for (x = node->str; x <= pointer; x++)
 {
-	_putchar(*x);
-	_putchar(" \ ");
-	_puts(pointer + 1);
-	_puts("\n");
+	_eputchar(*x);
+	_eputchar(' ');
+	_eputs(pointer + 1);
+	_eputs("\n");
 	return (0);
 }
 return (1);
@@ -85,9 +90,9 @@ return (1);
 */
 int _myalias(info_t *info)
 {
-	char *pointer = NULL;
 	int x = 0;
 	list_t *node = NULL;
+	list_t *info_alias = NULL;
 
 if (info->argc == 1)
 {
@@ -102,11 +107,12 @@ return (0);
 }
 for (x = 1; info->argv[x]; x++)
 {
-	pointer = _strchr(info->argv[x], '=')
+	char *pointer = strchr(info->argv[x], '=');
+
 		if (pointer)
 			set_alias(info, info->argv[x]);
 		else
-			print_alias(node_starts_with(info->alias, info->argv[x], '='));
+			print_alias(node_starts_with(list_t*, info->argv[x], '='));
 }
 return (0);
 }
