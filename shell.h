@@ -181,6 +181,10 @@ int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
 
+int _putchar(char c);
+int _puts(char *str);
+int _strcmp(char *,char *);
+
 int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
