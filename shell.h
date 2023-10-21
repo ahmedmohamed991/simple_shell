@@ -12,6 +12,7 @@
 #include <limits.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <stddef.h>
 
 /*for read/write buffers */
 #define READ_BUF_SIZE 1024
@@ -174,7 +175,7 @@ void free_list(list_t **);
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
+list_t *node_starts_with(info_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
 void _eputs(char *);

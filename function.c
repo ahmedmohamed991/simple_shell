@@ -88,7 +88,7 @@ void print_error(info_t *info, char *estr)
  */
 int print_d(int input, int fd)
 {
-	int (*__putchar)(char) = _putchar;
+	int (__putchar)(char) = __putchar;
 	int a, count = 0;
 	unsigned int _abs_, cu;
 
@@ -129,20 +129,20 @@ int _setenv(info_t *info, char *var, char *value)
 {
 	char *buf = NULL;
 	list_t *node;
-	char *pp;
 
 	if (!var || !value)
 		return (0);
-	buf = malloc(_strlen(var) + _strlen(value) + 2);
+	buf = malloc(strlen(var) + strlen(value) + 2);
 	if (!buf)
 		return (1);
-	_strcpy(buf, var);
-	_strcat(buf, "=");
-	_strcat(buf, value);
+	strcpy(buf, var);
+	strcat(buf, "=");
+	strcat(buf, value);
 	node = info->env;
 	while (node)
 	{
-		pp = starts_with(node->str, var);
+		char *pp = node_starts_with(node->str, var);
+
 		if (pp && *pp == '=')
 		{
 			free(node->str);
@@ -172,6 +172,7 @@ char *_strdup(const char *str)
 	while (*str++)
 		l++;
 	re = malloc(sizeof(char) * (l + 1));
+
 	if (!re)
 		return (NULL);
 	for (l++; l--;)
@@ -290,11 +291,11 @@ size_t print_list(const list_t *h)
 
 	while (h)
 	{
-		_puts(convert_number(h->num, 10, 0));
-		_putchar(':');
-		_putchar(' ');
-		_puts(h->str ? h->str : "(nil)");
-		_puts("\n");
+		_eputs(convert_number(h->num, 10, 0));
+		_eputchar(':');
+		_eputchar(' ');
+		_eputs(h->str ? h->str : "(nil)");
+		_eputs("\n");
 		h = h->next;
 		a++;
 	}

@@ -57,7 +57,7 @@ int _mycd(info_t *info)
 			_eputchar('\n');
 			return (1);
 		}
-		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
+		_eputs(_getenv(info, "OLDPWD=")), _eputchar('\n');
 		chr = chdir((dr = _getenv(info, "OLDPWD=")) ? dr : "/");
 	}
 	else
@@ -85,9 +85,9 @@ int _myhelp(info_t *info)
 	char **array;
 
 	array = info->argv;
-	_puts("help call works. function not yet implemented \n");
+	_eputs("help call works. function not yet implemented \n");
 	if (0)
-		_puts(*array);
+		_eputs(*array);
 	return (0);
 }
 /**

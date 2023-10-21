@@ -104,16 +104,15 @@ int _unsetenv(info_t *info, char *var)
 {
 	list_t *node = info->env;
 	size_t x = 0;
-	char *pointer;
 
 	if (!node || !var)
 		return (0);
 
 while (node)
 {
-	pointer = starts_with(node->str, var);
+	char *pointer = strchr(node->str, '=');
 
-	if (pointer && *pointer == '=')
+	if (pointer)
 	{
 		info->env_changed = delet_node_at_index(&(info->env), x);
 		x = 0;
