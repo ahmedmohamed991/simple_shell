@@ -165,7 +165,7 @@ int _setenv(info_t *info, char *var, char *value)
 char *_strdup(const char *str)
 {
 	int l = 0;
-	char re;
+	char *re;
 
 	if (str == NULL)
 		return (NULL);

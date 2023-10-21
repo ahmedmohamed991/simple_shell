@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  * print_list_str - prints only the str element of a list_t linked list
  * @h: pointer to first node

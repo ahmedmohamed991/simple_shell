@@ -126,6 +126,9 @@ int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
 
+#define INFO_INIT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0}
+
 
 int _myhistory(info_t *);
 int _myalias(info_t *);
@@ -181,8 +184,14 @@ int _putsfd(char *str, int fd);
 
 
 int _putchar(char c);
-int _puts(char *str);
+void _puts(char *str);
 int _strcmp(char *,char *);
+char *_strchr(char *, char);
+int _strlen(char *);
+char *_strcpy(char*, char *);
+char *_strcat(char *,char *);
+char *starts_with(const char *, const char *);
+char *_strdup(const char *);
 
 int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
